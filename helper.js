@@ -29,26 +29,31 @@ const allCaps = (input) => {
 // })
 
 
-app.get('/sightings', (req, res) => {
-    res.json(data)
+app.get('/sightings/', (req, res) => {
+    const { state } = req.query
+    const { shape } = req.query
+    console.log(shape)
+    data.forEach((item) => {
+        if (item.state === state) {
+            res.render('state.ejs', { data: data, state: allCaps(state) })
+        } 
+        if (item.shape === shape) {
+            res.render('shape.ejs', {data:data, shape:capitalize(shape)})
+        }
+        if (!shape && !state) {
+            res.json(data)
+        }
+        }) 
 })
 app.get("/sightings/:id", (req, res) => {
     const { state } = req.query
     const {shape}=req.query
     //console.log(state)
     const { id } = req.params
-    if (shape && state) {
-        data.forEach((item) => {
-            if (item.state === id) { 
-                res.render('combine.ejs', { data: data, shape: capitalize(shape), state:(state) })
-                res.redirect("/sightings/id")
-            }
-        })
-    }
     if (state) {
         data.forEach((item) => {
             if (item.state === id) { 
-                res.render('index.ejs', { data: data, state: allCaps(state) })
+                res.render('stateQuery.ejs', { data: data, state: allCaps(state) })
                 res.redirect("/sightings/id")
             }
         })
@@ -56,7 +61,7 @@ app.get("/sightings/:id", (req, res) => {
     if (shape) {
         data.forEach((item) => {
             if (item.state === id) { 
-                res.render('shapeIndex.ejs', { data: data, shape: capitalize(shape) })
+                res.render('shapeQuery.ejs', { data: data, shape: capitalize(shape) })
                 res.redirect("/sightings/id")
             }
         })
