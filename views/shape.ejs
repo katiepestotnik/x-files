@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <% for(let i = 0; i < data.length; i++) { %>
+   <% if(data[i].shape===shape) {%>
+        <div style="border: 2px solid darkgreen; padding: 10px; display: flex; width: 50%; flex-wrap: wrap">
+            <div>
+            <div><%=data[i].date %></div>
+            <div><%=data[i].city %></div>
+            <div><%=data[i].state %></div>
+            <div><%=data[i].shape %></div>
+            <div><%=data[i].duration %></div>
+            <div><%=data[i].description %></div>
+        </div>
+        </div>
+    <%}%>
+
+    <% } %>
+</body>
+</html>
