@@ -14,34 +14,30 @@ const capitalize = (input) => {
     const cap = input[0].toUpperCase() + input.slice(1)
     return cap
 }
-// const capLetter = (input) => {
-//     const split = input.split('')
-//     console.log(split)
-// }
-
-
 const allCaps = (input) => {
     const caps = input.toUpperCase()
     return caps
 }
-// app.get('/', (req, res) => {
-//     res.render('index.ejs', {data:data})
-// })
-
 
 app.get('/sightings/', (req, res) => {
     const { state } = req.query
     const { shape } = req.query
     console.log(shape)
     data.forEach((item) => {
-        if (item.state === state) {
-            res.render('state.ejs', { data: data, state: allCaps(state) })
-        } 
-        if (item.shape === shape) {
-            res.render('shape.ejs', {data:data, shape:capitalize(shape)})
+        if (state && shape) {
+            res.render('combine.ejs', {data:data, state:allCaps(state),shape:capitalize(shape)})
         }
-        if (!shape && !state) {
+        else if (state) {
+            res.render('stateQuery.ejs', { data: data, state: allCaps(state) })
+        } 
+        else if (shape) {
+            res.render('shapeQuery.ejs', {data:data, shape:capitalize(shape)})
+        }
+        else if (!shape && !state) {
             res.json(data)
+        }
+        else {
+            res.send('error')
         }
         }) 
 })
