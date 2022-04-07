@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>State Search</title>
+    <title>Main Data Page</title>
 </head>
 <body>
-    <h1>State Params</h1>
+    <h1>All Data</h1>
+    <a style="font-size: 20px; color: blue; text-transform: uppercase; text-decoration: none" href="/sightings/new">Search data</a>
     <% for(let i = 0; i < data.length; i++) { %>
-        <% if(data[i].state===state){%>
-            <div style="border: 2px solid darkorchid; padding: 15px; display: flex; width: 50%; flex-wrap: wrap; background-color: lightpink; margin: 10px;font-size:20px">
+            <div style="border: 2px solid rgb(255, 0, 221); padding: 15px; display: flex; width: 50%; flex-wrap: wrap; background-color: rgb(0, 109, 128); color: white; margin: 10px; font-size:20px">
                 <div>
                 <div><%=data[i].date %></div>
                 <div><%=data[i].city %></div>
@@ -20,8 +20,6 @@
                 <div><%=data[i].description %></div>
             </div>
             </div>
-        <%}%> 
-
-        <% } %>
+   <% }%>
 </body>
 </html>
